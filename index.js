@@ -7,7 +7,6 @@ var createSchema = function (filename) {
 
     var loadMarkdownSync = function (mdPath) {
         var p = path.join(path.dirname(filename), mdPath);
-        console.log(mdPath, p);
         var data;
 
         try {

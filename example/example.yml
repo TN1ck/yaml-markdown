@@ -1,4 +1,4 @@
 test_str: 'Test String'
 test_number: 2324342
 test_markdown: !md './example.md'
-test_markdown_react: !md-json './example.md'
+test_markdown_json: !md-json './example.md'

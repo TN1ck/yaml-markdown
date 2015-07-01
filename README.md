@@ -11,7 +11,7 @@ Use the custom `!md` and `!md-json` tags to load the markdown-files (the given p
 
 ```yml
 test_markdown: !md './example.md'
-test_markdown_react: !md-react './example.md'
+test_markdown_json: !md-json './example.md'
 ```
 
 Use the exposed methods to load the yaml with the markdown-schema file.
