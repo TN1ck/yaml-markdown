@@ -1,5 +1,5 @@
 # yaml-markdown
-Extend the yaml-js parser with a markdown type,  React-output is optional.
+Extend the yaml-js parser with a markdown type, json-wrapped output is optional.
 
 ## install
 
@@ -7,7 +7,7 @@ Extend the yaml-js parser with a markdown type,  React-output is optional.
 
 ## usage
 
-Use the custom `!md` and `!md-react` tags to load the markdown-files (the given path is relative to the `.yml`-file).
+Use the custom `!md` and `!md-json` tags to load the markdown-files (the given path is relative to the `.yml`-file).
 
 ```yml
 test_markdown: !md './example.md'

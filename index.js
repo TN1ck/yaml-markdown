@@ -2,12 +2,12 @@ var marked = require('marked');
 var fs     = require('fs');
 var path   = require('path');
 var yaml   = require('js-yaml');
-var react  = require('react');
 
 var createSchema = function (filename) {
 
     var loadMarkdownSync = function (mdPath) {
-        var p = path.join(path.dirname(filename), mdPath)
+        var p = path.join(path.dirname(filename), mdPath);
+        console.log(mdPath, p);
         var data;
 
         try {
@@ -19,50 +19,49 @@ var createSchema = function (filename) {
         return marked(data);
     };
 
-    var createReactFromMarkdown = function(md) {
-        return react.createElement('span', {
-            dangerouslySetInnerHTML: {
-                __html: md
-            }
-        });
-    };
-
-
     var MarkdownYamlType = new yaml.Type('!md', {
         kind: 'scalar',
         construct: loadMarkdownSync
     });
 
-    var MarkdownReactYamlType = new yaml.Type('!md-react', {
+    var MarkdownJSONYamlType = new yaml.Type('!md-json', {
         kind: 'scalar',
         construct: function (mdPath) {
-            return createReactFromMarkdown(loadMarkdownSync(mdPath));
-        },
-        represent: function (obj) {
-            obj.toString();
+            return {
+                filename: filename,
+                md: loadMarkdownSync(mdPath)
+            };
         }
     });
 
-    return yaml.Schema.create([ MarkdownYamlType, MarkdownReactYamlType ]);
+    return yaml.Schema.create([ MarkdownYamlType, MarkdownJSONYamlType ]);
 };
 
 
-var loadWithMarkdown = function (filename, callback, options) {
+var loadWithMarkdown = function (filename, callback, options, data) {
 
     options = options || {};
     options.schema = createSchema(filename);
 
-    fs.readFile(filename, 'utf8', function (error, data) {
-        var loaded;
+    // the data is file-contents are already loaded
+    if (data) {
+        var loaded = yaml.load(data, options);
+        callback(loaded);
+        return loaded;
+    } else {
+        fs.readFile(filename, 'utf8', function (error, data) {
+            var loaded;
 
-        if (!error) {
-            loaded = yaml.load(data, options);
-            callback(loaded);
-        } else {
-            console.error(error.stack || error.message || String(error));
-        }
+            if (!error) {
+                loaded = yaml.load(data, options);
+                callback(loaded);
+            } else {
+                console.error(error.stack || error.message || String(error));
+            }
 
-    });
+        });
+    }
+
 
 };
 
