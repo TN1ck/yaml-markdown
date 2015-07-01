@@ -1,0 +1,34 @@
+{
+  "name": "yaml-markdown",
+  "version": "1.0.0",
+  "description": "Extends js-yaml with markdown type, optional react-output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TN1ck/yaml-markdown.git"
+  },
+  "keywords": [
+    "markdown",
+    "yaml",
+    "yml",
+    "js-yaml",
+    "react",
+    "md",
+    "custom",
+    "type"
+  ],
+  "author": "Tom Nick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TN1ck/yaml-markdown/issues"
+  },
+  "homepage": "https://github.com/TN1ck/yaml-markdown",
+  "dependencies": {
+    "js-yaml": "^3.3.1",
+    "marked": "^0.3.3",
+    "react": "^0.13.3"
+  }
+}
