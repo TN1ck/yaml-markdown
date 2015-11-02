@@ -1,6 +1,6 @@
 {
   "name": "yaml-markdown",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extends js-yaml with markdown type, optional react-output",
   "main": "index.js",
   "scripts": {
